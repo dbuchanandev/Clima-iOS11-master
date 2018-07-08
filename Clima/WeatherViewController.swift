@@ -20,7 +20,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 
     //TODO: Declare instance variables here
     let locationManager = CLLocationManager()
-
+    let weatherDataModel = WeatherDataModel()
     
     //Pre-linked IBOutlets
     @IBOutlet weak var weatherIcon: UIImageView!
@@ -54,6 +54,11 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
             if response.result.isSuccess {
                 print("Success! Got the weather data")
                 
+                let weatherJSON : JSON = JSON(response.result.value as Any)
+                self.updateWeatherData(weatherJSON)
+                
+                
+                
             } else {
                 print("Error \(String(describing: response.result.error))")
                 self.cityLabel.text = "Network Connection Error"
@@ -72,7 +77,22 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
    
     
     //Write the updateWeatherData method here:
-    
+    func updateWeatherData(_ json: JSON) {
+        
+        if let tempResults = json["main"]["temp"].double {
+        weatherDataModel.temperature = Int(9/5 * (tempResults - 273) + 32)
+        
+        weatherDataModel.city = json["name"].string!
+        
+        weatherDataModel.condition = json["weather"][0]["id"].intValue
+        
+        weatherDataModel.weatherIconName = weatherDataModel.updateWeatherIcon(condition: weatherDataModel.condition)
+        
+        } else {
+            self.temperatureLabel.text = "??"
+            self.cityLabel.text = "Weather Data Unavailable"
+        }
+    }
 
     
     
