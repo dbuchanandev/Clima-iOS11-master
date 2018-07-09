@@ -31,7 +31,7 @@
                                     <constraint firstAttribute="width" constant="50" id="p6a-Rh-5P9"/>
                                     <constraint firstAttribute="height" constant="50" id="qRJ-AK-fNV"/>
                                 </constraints>
-                                <state key="normal" image="switch">
+                                <state key="normal" image="search">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -191,6 +191,6 @@
         <image name="background" width="500" height="755"/>
         <image name="cityBackground" width="600" height="399"/>
         <image name="left" width="32" height="32"/>
-        <image name="switch" width="64" height="64"/>
+        <image name="search" width="128" height="128"/>
     </resources>
 </document>
